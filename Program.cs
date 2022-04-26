@@ -16,9 +16,9 @@ namespace ConsoleAppTeste
         var category = Console.ReadLine().ToLower();
         Console.WriteLine("Insert a year: ");
         var year = Console.ReadLine();
-
         HttpResponseMessage response = await _client.GetAsync($"https://api.nobelprize.org/v1/prize.json?category={category}&year={year}");
         var content = await response.Content.ReadAsStringAsync();
+
 
         var nobelPrize = JsonConvert.DeserializeObject<RootPrize>(content);
 
@@ -29,6 +29,8 @@ namespace ConsoleAppTeste
             Console.WriteLine($"\n{item.Category}\n");
             Console.WriteLine($"{item.Year}\n");
             Console.WriteLine($"{i.Laureates}\n");
+            string log = content.ToString();
+            await File.WriteAllTextAsync("log.txt", log);
           }
         }
       }
