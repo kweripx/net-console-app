@@ -10,6 +10,7 @@ console application to retrieve information regarding nobel prize laureates
 - [x] Retrieve from the nobel prize api information for each category and year
 - [x] Log the response from the API to a log file in the same folder as the executable
 - [x] Receive a mandatory parameter with a full path to a file
+- [x] 5 seconds interval before exit
 - [ ] If we run the application multiple times, it should not make requests to the API if the application was ran for the last time less than 60 seconds before.
 - [ ] URL being used and the output of the request.
 
