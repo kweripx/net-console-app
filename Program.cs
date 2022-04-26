@@ -20,12 +20,16 @@ namespace ConsoleAppTeste
         HttpResponseMessage response = await _client.GetAsync($"https://api.nobelprize.org/v1/prize.json?category={category}&year={year}");
         var content = await response.Content.ReadAsStringAsync();
 
-        var prizes = JsonConvert.DeserializeObject<Prize>(content);
+        var nobelPrize = JsonConvert.DeserializeObject<RootPrize>(content);
 
-        foreach (var item in prizes)
+        foreach (var item in nobelPrize.Prizes)
         {
-          Console.WriteLine(item.Category);
-          Console.WriteLine(item.Year);
+          foreach (var i in nobelPrize.Prizes)
+          {
+            Console.WriteLine($"\n{item.Category}\n");
+            Console.WriteLine($"{item.Year}\n");
+            Console.WriteLine($"{i.Laureates}\n");
+          }
         }
       }
       catch (HttpRequestException e)
