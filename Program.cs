@@ -52,6 +52,7 @@ namespace ConsoleAppTeste
 
       Console.WriteLine("Press any key to exit.");
       System.Console.ReadKey();
+      Thread.Sleep(TimeSpan.FromSeconds(5));
     }
 
   }
