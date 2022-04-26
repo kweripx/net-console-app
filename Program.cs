@@ -2,8 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-
-
+using nobelPrizes;
 namespace ConsoleAppTeste
 {
   class Program
@@ -14,18 +13,20 @@ namespace ConsoleAppTeste
       try
       {
         Console.WriteLine("Insert a category: ");
-        var category = Console.ReadLine();
+        var category = Console.ReadLine().ToLower();
         Console.WriteLine("Insert a year: ");
         var year = Console.ReadLine();
 
         HttpResponseMessage response = await _client.GetAsync($"https://api.nobelprize.org/v1/prize.json?category={category}&year={year}");
         var content = await response.Content.ReadAsStringAsync();
-        // foreach (var item in nobel)
-        // {
-        //   Console.WriteLine(item.Category);
-        // }
-        var prizes = JsonConvert.DeserializeObject(content);
-        Console.WriteLine(prizes);
+
+        var prizes = JsonConvert.DeserializeObject<Prize>(content);
+
+        foreach (var item in prizes)
+        {
+          Console.WriteLine(item.Category);
+          Console.WriteLine(item.Year);
+        }
       }
       catch (HttpRequestException e)
       {
