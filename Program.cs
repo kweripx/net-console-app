@@ -36,7 +36,7 @@ namespace ConsoleAppTeste
     }
     static async Task Main()
     {
-      string[] request = System.IO.File.ReadAllLines(@"C:\Users\trick\dev\consoleapp-teste\request.txt");
+      string[] request = System.IO.File.ReadAllLines(@"request.txt");
       //Display the file contents
       System.Console.WriteLine("Contents of request.txt = ");
       foreach (string line in request)
