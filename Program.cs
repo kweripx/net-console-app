@@ -19,15 +19,15 @@ namespace ConsoleAppTeste
 
       foreach (var item in nobelPrize.Prizes)
       {
-        Console.WriteLine($"\n{item.Category}\n");
-        Console.WriteLine($"{item.Year}\n");
+        Console.WriteLine($"\nCategory: {item.Category}\n");
+        Console.WriteLine($"Year: {item.Year}\n");
         foreach (var laureate in item.Laureates)
         {
-          Console.WriteLine($"{laureate.Id}\n");
-          Console.WriteLine($"{laureate.Firstname}\n");
-          Console.WriteLine($"{laureate.Surname}\n");
-          Console.WriteLine($"{laureate.Motivation}\n");
-          Console.WriteLine($"{laureate.Share}\n");
+          Console.WriteLine($"ID: {laureate.Id}\n");
+          Console.WriteLine($"Firstname: {laureate.Firstname}\n");
+          Console.WriteLine($"Surname: {laureate.Surname}\n");
+          Console.WriteLine($"Motivation: {laureate.Motivation}\n");
+          Console.WriteLine($"Share: {laureate.Share}\n");
         }
       }
       string log = content.ToString();
