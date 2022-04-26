@@ -19,24 +19,29 @@ namespace ConsoleAppTeste
 
       foreach (var item in nobelPrize.Prizes)
       {
-        foreach (var i in nobelPrize.Prizes)
+        Console.WriteLine($"\n{item.Category}\n");
+        Console.WriteLine($"{item.Year}\n");
+        foreach (var laureate in item.Laureates)
         {
-          Console.WriteLine($"\n{item.Category}\n");
-          Console.WriteLine($"{item.Year}\n");
-          Console.WriteLine($"{i.Laureates}\n");
-          string log = content.ToString();
-          await File.WriteAllTextAsync("log.txt", log);
+          Console.WriteLine($"{laureate.Id}\n");
+          Console.WriteLine($"{laureate.Firstname}\n");
+          Console.WriteLine($"{laureate.Surname}\n");
+          Console.WriteLine($"{laureate.Motivation}\n");
+          Console.WriteLine($"{laureate.Share}\n");
         }
       }
+      string log = content.ToString();
+      await File.WriteAllTextAsync("log.txt", log);
       Thread.Sleep(TimeSpan.FromSeconds(15));
     }
     static async Task Main()
     {
       string[] request = System.IO.File.ReadAllLines(@"C:\Users\trick\dev\consoleapp-teste\request.txt");
+      //Display the file contents
       System.Console.WriteLine("Contents of request.txt = ");
       foreach (string line in request)
       {
-        // Use a tab to indent each line of the file.
+        // Split the request content to become a request parameter.
         var splitData = line.Split(';');
         var category = splitData[0];
         var year = splitData[1];
