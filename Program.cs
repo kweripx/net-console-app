@@ -11,7 +11,7 @@ namespace ConsoleAppTeste
     static readonly HttpClient _client = new HttpClient();
 
 
-    static async Task GetData(string category, long year)
+    static async Task GetData(string category, string year)
     {
       HttpResponseMessage response = await _client.GetAsync($"https://api.nobelprize.org/v1/prize.json?category={category}&year={year}");
       var content = await response.Content.ReadAsStringAsync();
@@ -30,22 +30,23 @@ namespace ConsoleAppTeste
       }
       Thread.Sleep(TimeSpan.FromSeconds(15));
     }
-    static void Main()
+    static async Task Main()
     {
-      GetData();
-      // try
-      // {
-      //   Console.WriteLine("Insert a category: ");
-      //   var category = Console.ReadLine().ToLower();
-      //   Console.WriteLine("Insert a year: ");
-      //   var year = Console.ReadLine();
+      string[] request = System.IO.File.ReadAllLines(@"C:\Users\trick\dev\consoleapp-teste\request.txt");
+      System.Console.WriteLine("Contents of request.txt = ");
+      foreach (string line in request)
+      {
+        // Use a tab to indent each line of the file.
+        var splitData = line.Split(';');
+        var category = splitData[0];
+        var year = splitData[1];
+        Console.WriteLine("\t" + line);
+        await GetData(category, year);
+      }
 
-      // }
-      // catch (HttpRequestException e)
-      // {
-      //   Console.WriteLine("\nException Caught");
-      //   Console.WriteLine("Message: {0}", e.Message);
-      // }
+
+      Console.WriteLine("Press any key to exit.");
+      System.Console.ReadKey();
     }
 
   }
